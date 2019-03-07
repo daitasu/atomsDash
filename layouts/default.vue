@@ -28,6 +28,7 @@
       :clipped-left="clipped"
       fixed
       app
+      class="light-blue lighten-5"
     >
       <v-toolbar-side-icon @click="drawer = !drawer" />
       <v-btn
@@ -54,7 +55,11 @@
 </template>
 
 <script>
+// import colors from "vuetify/es5/util/colors";
 export default {
+  created() {
+    console.log(this);
+  },
   data() {
     return {
       clipped: false,
