@@ -21,7 +21,7 @@ export default {
   },
   computed: {
     isJumping() {
-      return this.jumping ? "jump" : "";
+      return this.jumping ? "jumping" : "";
     }
   },
   methods: {
@@ -47,8 +47,8 @@ export default {
   bottom: 100px;
   left: 150px;
 }
-.jump {
-  animation-name: fadeIn;
+.jumping {
+  animation-name: jump;
   animation-duration: 2s;
   animation-timing-function: ease-out;
   animation-delay: 0s;
@@ -58,7 +58,7 @@ export default {
   animation-play-state: running;
 }
 
-@keyframes fadeIn {
+@keyframes jump {
   0% {
     bottom: 100px;
   }
