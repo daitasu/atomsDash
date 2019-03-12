@@ -1,13 +1,34 @@
 <template lang="pug">
-  section
-    div.wall.approaching(:style="`width: ${width}; height: ${height};`")
+  div.wall(:style="`width: ${width}; height: ${height};`" :class="isPlaying")
 </template>
 
 <script>
 export default {
   props: {
     width: { type: String, default: "50px" },
-    height: { type: String, default: "80px" }
+    height: { type: String, default: "80px" },
+    playing: { type: Boolean, default: false }
+  },
+  computed: {
+    isPlaying() {
+      return this.playing ? "approaching" : "";
+    }
+  },
+  watch: {
+    playing: function(playing) {
+      this.measurePosition();
+    }
+  },
+  methods: {
+    measurePosition() {
+      const elem = this.$el;
+      const style = window.getComputedStyle(elem);
+      this.$emit("set", "obstacleX", style.left);
+      this.$emit("set", "obstacleY", style.bottom);
+      if (this.playing) {
+        setTimeout(() => this.measurePosition(), 50);
+      }
+    }
   }
 };
 </script>
@@ -17,7 +38,7 @@ export default {
   background-color: #555;
   position: absolute;
   bottom: 100px;
-  right: -5%;
+  left: 105%;
 }
 .approaching {
   animation-name: approach;
@@ -32,10 +53,10 @@ export default {
 
 @keyframes approach {
   0% {
-    right: -5%;
+    left: 105%;
   }
   100% {
-    right: 105%;
+    left: -5%;
   }
 }
 </style>

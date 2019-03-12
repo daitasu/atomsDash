@@ -1,12 +1,13 @@
 <template lang="pug">
-  section
-    div.ball(:class="isJumping" :style="`width: ${size}; height: ${size};`")
+  div.area(:class="isJumping" :style="`width: ${size}; height: ${size};`")
+    div.ball(:style="`width: ${size}; height: ${size};`")
 </template>
 
 <script>
 export default {
   props: {
-    size: { type: String, default: "80px" }
+    size: { type: String, default: "80px" },
+    playing: { type: Boolean, default: false }
   },
   data() {
     return {
@@ -26,7 +27,6 @@ export default {
   },
   methods: {
     onJump(event) {
-      console.log("キーボードが押された");
       if (this.jumping) {
         return;
       }
@@ -34,18 +34,37 @@ export default {
       setTimeout(() => {
         this.jumping = false;
       }, 2000);
+    },
+    measurePosition() {
+      const elem = this.$el;
+      const style = window.getComputedStyle(elem);
+      this.$emit("set", "charactorX", style.left);
+      this.$emit("set", "charactorY", style.bottom);
+      if (this.playing) {
+        setTimeout(() => this.measurePosition(), 50);
+      }
+    }
+  },
+  watch: {
+    playing: function(playing) {
+      this.measurePosition();
     }
   }
 };
 </script>
 
 <style lang="scss" scoped>
-.ball {
-  border-radius: 50%;
-  background-color: #000;
+.area {
+  // background-color: rgba(255, 193, 77, 0.783);
   position: absolute;
   bottom: 100px;
   left: 150px;
+  z-index: 0;
+}
+.ball {
+  border-radius: 50%;
+  background-color: #000;
+  z-index: 1;
 }
 .jumping {
   animation-name: jump;
