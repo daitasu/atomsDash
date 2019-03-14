@@ -48,7 +48,7 @@ export default {
     },
     judge() {
       const { obstacleX, charactorX, obstacleY, charactorY } = this.positions;
-      
+
       const totalRadiusX = this.charactorSize / 2 + this.obstacleWidth / 2;
       const distanceX = Math.abs(obstacleX - charactorX);
       const totalRadiusY = this.charactorSize / 2 + this.obstacleHeight / 2;

@@ -39,7 +39,12 @@ export default {
         {
           icon: "contacts",
           title: "キャラクター選択",
-          to: "/inspire"
+          to: "/select"
+        },
+        {
+          icon: "contacts",
+          title: "デモ",
+          to: "/demo"
         }
       ],
       miniVariant: false,
