@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.area(:style="`width: ${3 * size}px; height: ${3 * size}px;`")
+  div.area(:style="`width: ${3 * size}px; height: ${3 * size}px; top: ${top}px; bottom: ${bottom}px; right: ${right}px; left: ${left}px;`")
     transition(
       appear
       v-on:before-appear="customBeforeAppearHookL"
@@ -37,7 +37,11 @@ import Velocity from "velocity-animate";
 export default {
   props: {
     size: { type: Number, default: 30 },
-    selectedAtomNo: { type: Number, default: 4 }
+    selectedAtomNo: { type: Number, default: 10 },
+    top: { type: Number, default: 0 },
+    bottom: { type: Number, default: 0 },
+    right: { type: Number, default: 0 },
+    left: { type: Number, default: 0 }
   },
   computed: {
     isOutermostK: function() {
@@ -68,8 +72,7 @@ export default {
 .area {
   background-color: rgba(255, 193, 77, 0.783);
   position: absolute;
-  bottom: 100px;
-  left: 150px;
+  margin: auto;
   z-index: 0;
 }
 .electron-shell {

@@ -3,7 +3,7 @@
     section
       StartDialog(:dialog="showStart" :onOk="play")
       LoseDialog(:dialog="showLose" :onOk="play")
-    Ball(:playing="playing" @set="setPosition")
+    Character(:playing="playing" @set="setPosition")
     Wall(:playing="playing" @set="setPosition")
     Earth
 </template>
@@ -12,14 +12,15 @@
 import StartDialog from "~/components/molecules/Dialogs/StartDialog";
 import LoseDialog from "~/components/molecules/Dialogs/LoseDialog";
 import Earth from "~/components/atoms/Fields/Earth";
-import Ball from "~/components/atoms/Charactors/Ball";
+// import Ball from "~/components/atoms/Charactors/Ball";
+import Character from "~/components/molecules/Character";
 import Wall from "~/components/atoms/Obstacles/Wall";
 
 export default {
   components: {
     StartDialog,
     LoseDialog,
-    Ball,
+    Character,
     Wall,
     Earth
   },
