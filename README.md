@@ -2,21 +2,21 @@
 
 > Atomic characters run, jump and enjoy a hurdle race.
 
-## Build Setup
+## Description
+The atom created according to atomic design run fields and jump over obstacles.
+You can select some atoms as runner from the periodic table of elements.
 
-``` bash
-# install dependencies
-$ npm install
+This game is adopted Nuxt.js + Vuetify.
 
-# serve with hot reload at localhost:3000
-$ npm run dev
+However, it is work in progress. 
+Deploy is coming soon. 
 
-# build for production and launch server
-$ npm run build
-$ npm start
+## Game VIEW
+### Start View
+![StartView](https://github.com/daitasu/atomsDash/blob/master/assets/screenshot/screenshot_startView.png)
 
-# generate static project
-$ npm run generate
-```
+### Playing
+![Playing](https://github.com/daitasu/atomsDash/blob/master/assets/screenshot/screenshot_playing.png)
 
-For detailed explanation on how things work, checkout [Nuxt.js docs](https://nuxtjs.org).
+### Character Select
+![character Select](https://github.com/daitasu/atomsDash/blob/master/assets/screenshot/screenshot_characterSelect.png)
