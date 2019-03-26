@@ -2,52 +2,52 @@
   v-layout(row wrap style="text-align: center;").pl-2
     v-flex(xs6).pt-2
       v-layout(row, wrap).p-1
-        v-flex(xs3).p-2
+        v-flex(xs3).px-1
           v-card.card H
             Atom(:size="size" :selectedAtomNo="1" :top="top" :bottom="bottom" :right="right" :left="left")
-        v-flex(xs3).p-2 
+        v-flex(xs3).px-1
           v-card.hidden
-        v-flex(xs3).p-2
+        v-flex(xs3).px-1
           v-card.hidden
-        v-flex(xs3).p-2
+        v-flex(xs3).px-1
           v-card.hidden
     v-flex(xs6).pt-2
-      v-layout(row, wrap).p-1
-        v-flex(xs3).p-2
+      v-layout(row, wrap)
+        v-flex(xs3).px-1
           v-card.hidden
-        v-flex(xs3).p-2 
+        v-flex(xs3).px-1
           v-card.hidden
-        v-flex(xs3).p-2
+        v-flex(xs3).px-1
           v-card.hidden
-        v-flex(xs3).p-2
+        v-flex(xs3).px-1
           v-card.card He
             Atom(:size="size" :selectedAtomNo="2" :top="top" :bottom="bottom" :right="right" :left="left")
     v-flex(xs6).pt-2
-      v-layout(row, wrap).p-1
-        v-flex(xs3).p-2
+      v-layout(row, wrap)
+        v-flex(xs3).px-1
           v-card.card Li
             Atom(:size="size" :selectedAtomNo="3" :top="top" :bottom="bottom" :right="right" :left="left")
-        v-flex(xs3).p-2 
+        v-flex(xs3).px-1
           v-card.card Be
             Atom(:size="size" :selectedAtomNo="4" :top="top" :bottom="bottom" :right="right" :left="left")
-        v-flex(xs3).p-2
+        v-flex(xs3).px-1
           v-card.card B
             Atom(:size="size" :selectedAtomNo="5" :top="top" :bottom="bottom" :right="right" :left="left")
-        v-flex(xs3).p-2
+        v-flex(xs3).px-1
           v-card.card C
             Atom(:size="size" :selectedAtomNo="6" :top="top" :bottom="bottom" :right="right" :left="left")
     v-flex(xs6).pt-2
       v-layout(row, wrap).p-1
-        v-flex(xs3).p-2
+        v-flex(xs3).px-1
           v-card.card N
             Atom(:size="size" :selectedAtomNo="7" :top="top" :bottom="bottom" :right="right" :left="left")
-        v-flex(xs3).p-2 
+        v-flex(xs3).px-1
           v-card.card O
             Atom(:size="size" :selectedAtomNo="8" :top="top" :bottom="bottom" :right="right" :left="left")
-        v-flex(xs3).p-2
+        v-flex(xs3).px-1
           v-card.card F
             Atom(:size="size" :selectedAtomNo="9" :top="top" :bottom="bottom" :right="right" :left="left")
-        v-flex(xs3).p-2
+        v-flex(xs3).px-1
           v-card.card Ne
             Atom(:size="size" :selectedAtomNo="10" :top="top" :bottom="bottom" :right="right" :left="left")
 </template>
