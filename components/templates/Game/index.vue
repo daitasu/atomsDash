@@ -3,8 +3,8 @@
     section
       StartDialog(:dialog="showStart" :onOk="play")
       LoseDialog(:dialog="showLose" :onOk="play")
-    Character(:playing="playing" @set="setPosition")
-    Wall(:playing="playing" @set="setPosition")
+    Character(:playing="playing" @set="setPosition" :size="characterSize")
+    Wall(:playing="playing" @set="setPosition" :width="obstacleWidth" :height="obstacleHeight")
     Earth
 </template>
 
@@ -34,9 +34,9 @@ export default {
         obstacleY: 0,
         characterY: 0
       },
-      characterSize: 80,
+      characterSize: 90,
       obstacleWidth: 50,
-      obstacleHeight: 80
+      obstacleHeight: 40
     };
   },
   computed: {},

@@ -1,27 +1,30 @@
 <template lang="pug">
-  div.chara(:class="isJumping")
-    Atom(:size="size" :selectedAtomNo="10" :top="top" :bottom="bottom" :right="right" :left="left")
+  div.character(:class="isJumping")
+    Atom(:size="size" :selectedAtomNo="10" :left="left" :bottom="bottom")
 </template>
 
 <script>
-import Atom from "~/components/atoms/Charactors/DefaultAtom";
+import Atom from "~/components/atoms/Characters/DefaultAtom";
 
 export default {
   components: {
     Atom
   },
   props: {
-    size: { type: Number, default: 30 },
+    size: { type: Number, default: 90 },
     atomNo: { type: Number, default: 10 },
-    playing: { type: Boolean, default: false },
-    bottom: { type: Number, default: 100 }
+    playing: { type: Boolean, default: false }
   },
   data() {
     return {
-      jumping: false
+      jumping: false,
+      center: null,
+      bottom: 100,
+      left: 150
     };
   },
   created() {
+    this.center = this.bottom;
     window.addEventListener("keydown", this.onJump);
   },
   destroyed() {
@@ -38,16 +41,26 @@ export default {
         return;
       }
       this.jumping = true;
-      setTimeout(() => {
-        this.jumping = false;
-      }, 2000);
+
+      const radius = 400;
+      let t = 0;
+
+      const timer = setInterval(() => {
+        const jumpHeight = Math.sin((Math.PI * t++) / 100) * radius;
+
+        this.bottom = this.center + jumpHeight;
+
+        if (jumpHeight < 0) {
+          clearInterval(timer);
+          this.bottom = this.center;
+          this.jumping = false;
+        }
+      }, 20);
     },
     measurePosition() {
-      const elem = this.$children[0].$el;
-      console.log("this ->", elem);
-      const style = window.getComputedStyle(elem);
-      this.$emit("set", "charactorX", style.left);
-      this.$emit("set", "charactorY", style.bottom);
+      this.$emit("set", "characterX", this.left);
+      this.$emit("set", "characterY", this.bottom);
+
       if (this.playing) {
         setTimeout(() => this.measurePosition(), 50);
       }
@@ -62,38 +75,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.chara {
-  // background-color: rgba(255, 193, 77, 0.783);
+.character {
   position: absolute;
   bottom: 100px;
-  left: 150px;
+  left: 0;
   z-index: 0;
 }
 .ball {
   border-radius: 50%;
   background-color: #000;
   z-index: 1;
-}
-.jumping {
-  animation-name: jump;
-  animation-duration: 2s;
-  animation-timing-function: ease-out;
-  animation-delay: 0s;
-  animation-iteration-count: 1;
-  animation-direction: normal;
-  animation-fill-mode: none;
-  animation-play-state: running;
-}
-
-@keyframes jump {
-  0% {
-    bottom: 100px;
-  }
-  50% {
-    bottom: 300px;
-  }
-  100% {
-    bottom: 100px;
-  }
 }
 </style>

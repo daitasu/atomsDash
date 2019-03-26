@@ -1,12 +1,12 @@
 <template lang="pug">
-  div.wall(:style="`width: ${width}; height: ${height};`" :class="isPlaying")
+  div.wall(:style="`width: ${width}px; height: ${height}px;`" :class="isPlaying")
 </template>
 
 <script>
 export default {
   props: {
-    width: { type: String, default: "50px" },
-    height: { type: String, default: "80px" },
+    width: { type: Number, default: 50 },
+    height: { type: Number, default: 80 },
     playing: { type: Boolean, default: false }
   },
   computed: {
@@ -43,7 +43,7 @@ export default {
 .approaching {
   animation-name: approach;
   animation-duration: 7s;
-  animation-timing-function: ease-out;
+  animation-timing-function: linear;
   animation-delay: 0s;
   animation-iteration-count: 5;
   animation-direction: normal;
