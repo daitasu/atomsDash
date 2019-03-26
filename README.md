@@ -1,6 +1,6 @@
 # atomsDash
 
-> Atomic charactors run, jump and enjoy a hurdle race.
+> Atomic characters run, jump and enjoy a hurdle race.
 
 ## Build Setup
 

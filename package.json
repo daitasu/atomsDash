@@ -1,7 +1,7 @@
 {
   "name": "atomsDash",
   "version": "1.0.0",
-  "description": "Atomic charactors run, jump and enjoy a hurdle race.",
+  "description": "Atomic characters run, jump and enjoy a hurdle race.",
   "author": "daitasu",
   "private": true,
   "scripts": {

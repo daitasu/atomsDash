@@ -12,7 +12,6 @@
 import StartDialog from "~/components/molecules/Dialogs/StartDialog";
 import LoseDialog from "~/components/molecules/Dialogs/LoseDialog";
 import Earth from "~/components/atoms/Fields/Earth";
-// import Ball from "~/components/atoms/Charactors/Ball";
 import Character from "~/components/molecules/Character";
 import Wall from "~/components/atoms/Obstacles/Wall";
 
@@ -31,11 +30,11 @@ export default {
       showLose: false,
       positions: {
         obstacleX: 0,
-        charactorX: 0,
+        characterX: 0,
         obstacleY: 0,
-        charactorY: 0
+        characterY: 0
       },
-      charactorSize: 80,
+      characterSize: 80,
       obstacleWidth: 50,
       obstacleHeight: 80
     };
@@ -48,12 +47,12 @@ export default {
       this.showLose = false;
     },
     judge() {
-      const { obstacleX, charactorX, obstacleY, charactorY } = this.positions;
+      const { obstacleX, characterX, obstacleY, characterY } = this.positions;
 
-      const totalRadiusX = this.charactorSize / 2 + this.obstacleWidth / 2;
-      const distanceX = Math.abs(obstacleX - charactorX);
-      const totalRadiusY = this.charactorSize / 2 + this.obstacleHeight / 2;
-      const distanceY = Math.abs(obstacleY - charactorY);
+      const totalRadiusX = this.characterSize / 2 + this.obstacleWidth / 2;
+      const distanceX = Math.abs(obstacleX - characterX);
+      const totalRadiusY = this.characterSize / 2 + this.obstacleHeight / 2;
+      const distanceY = Math.abs(obstacleY - characterY);
 
       if (distanceX < totalRadiusX && distanceY < totalRadiusY) {
         this.showLose = true;
@@ -70,9 +69,9 @@ export default {
         case "obstacleY":
           modifiedValue = parseInt(value, 10) + this.obstacleHeight / 2;
           break;
-        case "charactorX":
-        case "charactorY":
-          modifiedValue = parseInt(value, 10) + this.charactorSize / 2;
+        case "characterX":
+        case "characterY":
+          modifiedValue = parseInt(value, 10) + this.characterSize / 2;
           break;
       }
       this.positions[name] = modifiedValue;

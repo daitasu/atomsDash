@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import Atom from "~/components/atoms/Charactors/DefaultAtom";
+import Atom from "~/components/atoms/Characters/DefaultAtom";
 
 export default {
   components: {

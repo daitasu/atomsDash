@@ -1,11 +1,11 @@
 <template lang="pug">
-  div.area(:style="`width: ${3 * size}px; height: ${3 * size}px; top: ${top}px; bottom: ${bottom}px; right: ${right}px; left: ${left}px;`")
+  div.area(:style="`width: ${size}px; height: ${size}px; top: ${top}px; bottom: ${bottom}px; right: ${right}px; left: ${left}px;`")
     transition(
       appear
       v-on:before-appear="customBeforeAppearHookL"
       v-on:appear="customAppearHook"
     )
-      div.electron-shell(:style="`width: ${3 * size}px; height: ${3 * size}px;`")
+      div.electron-shell(:style="`width: ${size}px; height: ${size}px;`")
         div.electron-1(v-if="selectedAtomNo > 6" :class="isOutermostL")
         div.electron-2(v-if="selectedAtomNo > 7" :class="isOutermostL")
         div.electron-3(v-if="selectedAtomNo > 8" :class="isOutermostL")
@@ -15,7 +15,7 @@
           v-on:before-appear="customBeforeAppearHookL2"
           v-on:appear="customAppearHook"
         )
-          div.electron-shell(:style="`width: ${3 * size}px; height: ${3 * size}px; transform: rotateZ(45deg);`")
+          div.electron-shell(:style="`width: ${size}px; height: ${size}px; transform: rotateZ(45deg);`")
             div.electron-1(v-if="selectedAtomNo > 2" :class="isOutermostL")
             div.electron-2(v-if="selectedAtomNo > 3" :class="isOutermostL")
             div.electron-3(v-if="selectedAtomNo > 4" :class="isOutermostL")
@@ -25,10 +25,10 @@
       v-on:before-appear="customBeforeAppearHookK"
       v-on:appear="customAppearHook"
     )
-      div.electron-shell(:style="`width: ${2 * size}px; height: ${2 * size}px;`")
+      div.electron-shell(:style="`width: ${size * 2 / 3 }px; height: ${size * 2 / 3}px;`")
         div.electron-1(v-if="selectedAtomNo > 0" :class="isOutermostK")
         div.electron-2(v-if="selectedAtomNo > 1" :class="isOutermostK")
-    div.neutron(:style="`width: ${size}px; height: ${size}px;`")
+    div.neutron(:style="`width: ${size / 3}px; height: ${size / 3}px;`")
 </template>
 
 <script>
@@ -36,7 +36,7 @@ import Velocity from "velocity-animate";
 
 export default {
   props: {
-    size: { type: Number, default: 30 },
+    size: { type: Number, default: 40 },
     selectedAtomNo: { type: Number, default: 10 },
     top: { type: Number, default: 0 },
     bottom: { type: Number, default: 0 },
@@ -50,6 +50,9 @@ export default {
     isOutermostL: function() {
       return this.selectedAtomNo < 11 ? "outermost" : "";
     }
+  },
+  created() {
+    console.log("higehogheog");
   },
   methods: {
     customBeforeAppearHookK: function(el) {
