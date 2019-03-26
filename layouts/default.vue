@@ -17,7 +17,7 @@
       v-container
         nuxt
     v-footer(:fixed="fixed" app)
-      span &copy; 2019
+      span &copy; 2019 @daitasu
 </template>
 
 <script>
