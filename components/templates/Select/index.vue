@@ -61,7 +61,7 @@ export default {
   },
   data() {
     return {
-      size: 30,
+      size: 90,
       top: 35,
       bottom: 10,
       left: 0,
