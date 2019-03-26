@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Atomic characters run, jump and enjoy a hurdle race.",
   "author": "daitasu",
+  "license": "MIT",
   "private": true,
   "scripts": {
     "dev": "nuxt --port 8000",
