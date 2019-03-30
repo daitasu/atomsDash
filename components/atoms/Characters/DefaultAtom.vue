@@ -51,9 +51,6 @@ export default {
       return this.selectedAtomNo < 11 ? "outermost" : "";
     }
   },
-  created() {
-    console.log("higehogheog");
-  },
   methods: {
     customBeforeAppearHookK: function(el) {
       Velocity(el, { rotateZ: "360deg" }, { duration: 5000, loop: true, easing: "linear" });
