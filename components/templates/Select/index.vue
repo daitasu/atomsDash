@@ -73,7 +73,7 @@ export default {
   },
   methods: {
     onOk() {
-      // TODO: add mutating selected atom 
+      // TODO: add mutating selected atom
       this.show = false;
     },
     onNg() {
