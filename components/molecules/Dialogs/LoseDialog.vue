@@ -1,10 +1,10 @@
 <template lang="pug">
 v-dialog(v-model="dialog" width="370")
   v-card(style="border-radius: 10px;")
-    v-card-text.text-md-center(style="font-weight: 400") {{ "GAME OVER" }}
+    v-card-text.text-xs-center(style="font-weight: 400") {{ "GAME OVER" }}
     v-divider
     v-card-actions
-      v-spacer.text-md-center
+      v-spacer.text-xs-center
         v-btn(color="primary" flat="" @click="onOk()") {{ "RESTART" }}
 </template>
 

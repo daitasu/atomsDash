@@ -42,7 +42,7 @@ export default {
 }
 .approaching {
   animation-name: approach;
-  animation-duration: 7s;
+  animation-duration: 4s;
   animation-timing-function: linear;
   animation-delay: 0s;
   animation-iteration-count: 5;

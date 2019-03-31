@@ -1,5 +1,5 @@
 export const state = () => ({
-  atomNo: 0
+  atomNo: 10
 });
 
 export const mutations = {

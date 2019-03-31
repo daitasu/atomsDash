@@ -1,7 +1,9 @@
 <template lang="pug">
 v-dialog(v-model="dialog" width="420")
   v-card(style="position: relative;")
-    v-card-text.text-md-center(style="padding-bottom: 120px") {{ text }}
+    v-card-text.text-xs-center(style="padding-bottom: 120px")
+      div {{ text }}
+      div.atom-name {{ getName("ELEMENT_SYMBOL", atomNo) }}
       Atom(:selectedAtomNo="atomNo" :size="90")
     v-divider
     v-card-actions
@@ -13,6 +15,7 @@ v-dialog(v-model="dialog" width="420")
 
 <script>
 import Atom from "~/components/atoms/Characters/DefaultAtom";
+import { getName } from "~/modules/master";
 
 export default {
   components: {
@@ -24,6 +27,9 @@ export default {
     ngText: { type: String, default: "キャンセル" },
     text: { type: String, default: "" },
     atomNo: { type: Number, default: 0 }
+  },
+  computed: {
+    getName: () => getName
   },
   watch: {
     dialog(val) {
@@ -42,3 +48,10 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.atom-name {
+  font-weight: 600;
+  font-size: 20px;
+}
+</style>

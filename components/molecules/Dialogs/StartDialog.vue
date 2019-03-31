@@ -1,10 +1,13 @@
 <template lang="pug">
 v-dialog(v-model="dialog" width="370")
   v-card(style="border-radius: 10px;")
-    v-card-text.text-md-center(style="font-weight: 400") {{ "ゲームを始めよう" }}
+    v-card-title.title.text-xs-center
+      div ゲームを始めよう!!!
+    v-card-text.text-xs-center(style="font-weight: 400") 
+      div スペースキーでジャンプします
     v-divider
     v-card-actions
-      v-spacer.text-md-center
+      v-spacer.text-xs-center
         v-btn(color="primary" flat="" @click="onOk()") {{ "START" }}
 </template>
 
@@ -16,3 +19,11 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.title {
+  display: block;
+  font-weight: 600;
+  font-size: 25px;
+}
+</style>
