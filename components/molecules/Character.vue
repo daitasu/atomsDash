@@ -1,6 +1,6 @@
 <template lang="pug">
   div.character(:class="isJumping")
-    Atom(:size="size" :selectedAtomNo="10" :left="left" :bottom="bottom")
+    Atom(:size="size" :selectedAtomNo="atomNo" :left="left" :bottom="bottom")
 </template>
 
 <script>
@@ -24,6 +24,7 @@ export default {
     };
   },
   created() {
+    this.atomNo = this.$store.state.atomNo;
     this.center = this.bottom;
     window.addEventListener("keydown", this.onJump);
   },

@@ -39,7 +39,6 @@ export default {
       obstacleHeight: 40
     };
   },
-  computed: {},
   methods: {
     play() {
       this.playing = true;

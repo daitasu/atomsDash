@@ -1,5 +1,7 @@
 <template lang="pug">
   v-layout(row wrap style="text-align: center;").pl-2
+    v-alert.success-alert(v-model="success" color="#03b961" dismissible type="success" transition="fade-transition")
+      div {{`キャラクターを変更しました`}}
     CharacterSelect(:dialog="show" :atomNo="selectedAtomNo" @ok="onOk()" @ng="onNg()" @dismiss="onNg()" text="この原子で遊びますか？")
     v-flex(xs6).pt-2
       v-layout(row, wrap).p-1
@@ -68,12 +70,21 @@ export default {
       top: 35,
       bottom: 10,
       show: false,
-      selectedAtomNo: 0
+      selectedAtomNo: 0,
+      success: false
     };
+  },
+  watch: {
+    success(val) {
+      if (val) {
+        setTimeout(() => (this.success = false), 3000);
+      }
+    }
   },
   methods: {
     onOk() {
-      // TODO: add mutating selected atom
+      this.$store.commit("SET_ATOM_NO", this.selectedAtomNo);
+      this.success = true;
       this.show = false;
     },
     onNg() {
@@ -99,5 +110,12 @@ export default {
   &:hover {
     background-color: #ddd !important;
   }
+}
+.success-alert {
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  right: 10px;
+  border-radius: 8px;
 }
 </style>
