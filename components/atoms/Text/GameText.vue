@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-template.game-text {{text}}
+  span.game-text {{text}}
 </template>
 
 <script>

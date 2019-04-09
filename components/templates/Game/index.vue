@@ -11,7 +11,7 @@
       LoseDialog(:dialog="showLose" :onOk="play")
     Character(:playing="playing" @set="setPosition" :size="characterSize")
     Wall(:playing="playing" @set="setPosition" :width="obstacleWidth" :height="obstacleHeight")
-    Earth
+    Earth(:playing="playing")
 </template>
 
 <script>
