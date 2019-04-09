@@ -1,5 +1,11 @@
 <template lang="pug">
-  v-layout.hoge(column, justify-center, align-center)
+  v-layout(row, justify-center, align-center)
+    v-flex(xs10)
+    v-flex(xs2).text-xs-left.px-2.py-1
+      div
+        GameText(:text="characterInfo")
+      div
+        GameText(:text="scoreInfo")
     section
       StartDialog(:dialog="showStart" :onOk="play")
       LoseDialog(:dialog="showLose" :onOk="play")
@@ -14,6 +20,8 @@ import LoseDialog from "~/components/molecules/Dialogs/LoseDialog";
 import Earth from "~/components/atoms/Fields/Earth";
 import Character from "~/components/molecules/Character";
 import Wall from "~/components/atoms/Obstacles/Wall";
+import GameText from "~/components/atoms/Text/GameText";
+import { getSymbol } from "~/modules/master";
 
 export default {
   components: {
@@ -21,7 +29,8 @@ export default {
     LoseDialog,
     Character,
     Wall,
-    Earth
+    Earth,
+    GameText
   },
   data() {
     return {
@@ -36,12 +45,23 @@ export default {
       },
       characterSize: 90,
       obstacleWidth: 50,
-      obstacleHeight: 40
+      obstacleHeight: 40,
+      score: 0
     };
+  },
+  computed: {
+    getSymbol: () => getSymbol,
+    characterInfo() {
+      return `atom: ${this.getSymbol("ELEMENT_SYMBOL", this.$store.state.atomNo)}`;
+    },
+    scoreInfo() {
+      return `score: ${Math.floor(this.score)}`;
+    }
   },
   methods: {
     play() {
       this.playing = true;
+      this.score = 0;
       this.showStart = false;
       this.showLose = false;
     },
@@ -56,6 +76,8 @@ export default {
       if (distanceX < totalRadiusX && distanceY < totalRadiusY) {
         this.showLose = true;
         this.playing = false;
+      } else {
+        this.score = this.score + 1 / 10;
       }
     },
     setPosition(name, value) {

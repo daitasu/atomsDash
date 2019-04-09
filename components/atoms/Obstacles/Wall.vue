@@ -45,7 +45,7 @@ export default {
   animation-duration: 4s;
   animation-timing-function: linear;
   animation-delay: 0s;
-  animation-iteration-count: 5;
+  animation-iteration-count: 100;
   animation-direction: normal;
   animation-fill-mode: none;
   animation-play-state: running;
