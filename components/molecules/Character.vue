@@ -23,6 +23,16 @@ export default {
       left: 150
     };
   },
+  computed: {
+    isJumping() {
+      return this.jumping ? "jumping" : "";
+    }
+  },
+  watch: {
+    playing: function(playing) {
+      this.measurePosition();
+    }
+  },
   created() {
     this.atomNo = this.$store.state.atomNo;
     this.center = this.bottom;
@@ -30,11 +40,6 @@ export default {
   },
   destroyed() {
     window.removeEventListener("keydown", this.onJump);
-  },
-  computed: {
-    isJumping() {
-      return this.jumping ? "jumping" : "";
-    }
   },
   methods: {
     onJump(event) {
@@ -65,11 +70,6 @@ export default {
       if (this.playing) {
         setTimeout(() => this.measurePosition(), 50);
       }
-    }
-  },
-  watch: {
-    playing: function(playing) {
-      this.measurePosition();
     }
   }
 };

@@ -22,9 +22,6 @@
 
 <script>
 export default {
-  created() {
-    console.log(this);
-  },
   data() {
     return {
       clipped: false,
@@ -47,6 +44,9 @@ export default {
       rightDrawer: false,
       title: "AtomsDash!!!"
     };
+  },
+  created() {
+    console.log(this);
   }
 };
 </script>
