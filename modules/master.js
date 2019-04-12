@@ -1,5 +1,4 @@
 const MASTERS = () => ({
-  // 求人ステータス
   ELEMENT_SYMBOL: [
     {
       text: "H",
