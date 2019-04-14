@@ -10,7 +10,7 @@
       StartDialog(:dialog="showStart" :onOk="play")
       LoseDialog(:dialog="showLose" :onOk="play")
     Character(:playing="playing" @set="setPosition" :size="characterSize")
-    Wall(:playing="playing" @set="setPosition" :width="obstacleWidth" :height="obstacleHeight")
+    Obstacle(:playing="playing" @set="setPosition" :width="obstacleWidth" :height="obstacleHeight")
     Earth(:playing="playing")
 </template>
 
@@ -20,6 +20,7 @@ import LoseDialog from "~/components/molecules/Dialogs/LoseDialog";
 import Earth from "~/components/atoms/Fields/Earth";
 import Character from "~/components/molecules/Character";
 import Wall from "~/components/atoms/Obstacles/Wall";
+import Obstacle from "~/components/molecules/Obstacle";
 import GameText from "~/components/atoms/Text/GameText";
 import { getSymbol } from "~/modules/master";
 
@@ -29,6 +30,7 @@ export default {
     LoseDialog,
     Character,
     Wall,
+    Obstacle,
     Earth,
     GameText
   },
