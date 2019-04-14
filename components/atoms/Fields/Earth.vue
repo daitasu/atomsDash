@@ -12,7 +12,7 @@ export default {
   watch: {
     playing(val) {
       if (val) {
-        Velocity(this.$el, { backgroundPosition: "-100% -100%" }, { duration: 50000, loop: true, easing: "linear" });
+        Velocity(this.$el, { backgroundPosition: "-100% -100%" }, { duration: 20000, loop: true, easing: "linear" });
       } else {
         Velocity(this.$el, "stop");
       }

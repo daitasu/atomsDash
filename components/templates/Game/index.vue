@@ -10,7 +10,7 @@
       StartDialog(:dialog="showStart" :onOk="play")
       LoseDialog(:dialog="showLose" :onOk="play")
     Character(:playing="playing" @set="setPosition" :size="characterSize")
-    Obstacle(:playing="playing" @set="setPosition" :width="obstacleWidth" :height="obstacleHeight")
+    Obstacle(@set="setPosition" @delete="deleteObstacle" @appearNext="appearNextObstacle" :obstacleNo="obstacleNo" :show="showObstacle" :width="obstacleWidth" :height="obstacleHeight")
     Earth(:playing="playing")
 </template>
 
@@ -39,6 +39,7 @@ export default {
       playing: false,
       showStart: true,
       showLose: false,
+      showObstacle: false,
       positions: {
         obstacleX: 0,
         characterX: 0,
@@ -48,6 +49,7 @@ export default {
       characterSize: 90,
       obstacleWidth: 50,
       obstacleHeight: 40,
+      obstacleNo: 1,
       score: 0
     };
   },
@@ -58,6 +60,11 @@ export default {
     },
     scoreInfo() {
       return `score: ${Math.floor(this.score)}`;
+    }
+  },
+  watch: {
+    playing(playing) {
+      this.showObstacle = playing;
     }
   },
   methods: {
@@ -99,6 +106,19 @@ export default {
       }
       this.positions[name] = modifiedValue;
       this.judge();
+    },
+    deleteObstacle() {
+      this.showObstacle = false;
+    },
+    appearNextObstacle() {
+      if (this.playing) {
+        this.obstacleNo = this.getRandom(1, 2);
+        this.obstacleHeight = this.getRandom(1, 4) * 40;
+        this.showObstacle = true;
+      }
+    },
+    getRandom(min, max) {
+      return Math.floor(Math.random() * (max + 1 - min)) + min;
     }
   }
 };
