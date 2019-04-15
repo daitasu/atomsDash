@@ -7,13 +7,13 @@
             v-icon {{ item.icon }}
           v-list-tile-content
             v-list-tile-title(v-text="item.title" style="font-weight: 600; font-size: 18px;")
-    v-toolbar(:clipped-left="clipped" fixed app class="light-blue lighten-5")
+    v-toolbar(:clipped-left="clipped" fixed app class="light-blue lighten-4")
       v-toolbar-side-icon(@click="drawer = !drawer")
       v-btn(icon @click.stop="clipped = !clipped")
         v-icon web
       v-toolbar-title(v-text="title")
       v-spacer
-    v-content
+    v-content.blue.lighten-5
       v-container
         nuxt
     v-footer(:fixed="fixed" app)

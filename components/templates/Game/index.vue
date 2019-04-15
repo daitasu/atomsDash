@@ -1,7 +1,7 @@
 <template lang="pug">
   v-layout(row, justify-center, align-center)
     v-flex(xs10)
-    v-flex(xs2).text-xs-left.px-2.py-1
+    v-flex(xs2 style="z-index: 3;").text-xs-left.px-2.py-1
       div
         GameText(:text="characterInfo")
       div
@@ -9,6 +9,7 @@
     section
       StartDialog(:dialog="showStart" :onOk="play")
       LoseDialog(:dialog="showLose" :onOk="play")
+    Scene(:playing="playing")
     Character(:playing="playing" @set="setPosition" :size="characterSize")
     Obstacle(@set="setPosition" @delete="deleteObstacle" @appearNext="appearNextObstacle" :obstacleNo="obstacleNo" :show="showObstacle" :width="obstacleWidth" :height="obstacleHeight")
     Earth(:playing="playing")
@@ -19,8 +20,8 @@ import StartDialog from "~/components/molecules/Dialogs/StartDialog";
 import LoseDialog from "~/components/molecules/Dialogs/LoseDialog";
 import Earth from "~/components/atoms/Fields/Earth";
 import Character from "~/components/molecules/Character";
-import Wall from "~/components/atoms/Obstacles/Wall";
 import Obstacle from "~/components/molecules/Obstacle";
+import Scene from "~/components/molecules/Scene";
 import GameText from "~/components/atoms/Text/GameText";
 import { getSymbol } from "~/modules/master";
 
@@ -29,8 +30,8 @@ export default {
     StartDialog,
     LoseDialog,
     Character,
-    Wall,
     Obstacle,
+    Scene,
     Earth,
     GameText
   },
