@@ -10,9 +10,9 @@
       StartDialog(:dialog="showStart" :onOk="play")
       LoseDialog(:dialog="showLose" :onOk="play")
     Scene(:playing="playing")
-    Character(:playing="playing" @set="setPosition" :size="characterSize")
-    Obstacle(@set="setPosition" @delete="deleteObstacle" @appearNext="appearNextObstacle" :obstacleNo="obstacleNo" :show="showObstacle" :width="obstacleWidth" :height="obstacleHeight" :index="1")
-    Obstacle(@set="" @delete="deleteObstacle" @appearNext="appearNextObstacle" :obstacleNo="obstacleNo2" :show="showObstacle2" :width="obstacleWidth2" :height="obstacleHeight2" :index="2")
+    Character(:playing="playing" @set="setCharacterPosition" :size="character.size")
+    template(v-for="o, index in obstacles")
+      Obstacle(@set="setObstaclePosition" @delete="deleteObstacle" @appearNext="appearNextObstacle" :obstacleNo="o.obstacleNo" :show="o.show" :width="o.width" :height="o.height" :index="index")
     Earth(:playing="playing")
 </template>
 
@@ -41,39 +41,43 @@ export default {
       playing: false,
       showStart: true,
       showLose: false,
-      positions: {
-        obstacleX: 0,
-        characterX: 0,
-        obstacleY: 0,
-        characterY: 0
+      character: {
+        size: 90,
+        positionX: 0,
+        positionY: 0
       },
-      characterSize: 90,
-      showObstacle: false,
-      obstacleWidth: 50,
-      obstacleHeight: 40,
-      obstacleNo: 1,
-      showObstacle2: false,
-      obstacleWidth2: 50,
-      obstacleHeight2: 40,
-      obstacleNo2: 1,
       obstacles: [
         {
           width: 50,
           height: 40,
           show: false,
-          obstacleNo: 1
+          obstacleNo: 1,
+          positionX: 0,
+          positionY: 0
         },
         {
           width: 50,
           height: 40,
           show: false,
-          obstacleNo: 1
+          obstacleNo: 1,
+          positionX: 0,
+          positionY: 0
         },
         {
           width: 50,
           height: 40,
           show: false,
-          obstacleNo: 1
+          obstacleNo: 1,
+          positionX: 0,
+          positionY: 0
+        },
+        {
+          width: 50,
+          height: 40,
+          show: false,
+          obstacleNo: 1,
+          positionX: 0,
+          positionY: 0
         }
       ],
       score: 0
@@ -89,15 +93,16 @@ export default {
     }
   },
   watch: {
-    playing(playing) {
-      if (playing) {
-        this.showObstacle = true;
+    playing(val) {
+      if (val) {
+        this.obstacles[0].show = true;
         setTimeout(() => {
-          this.showObstacle2 = true;
+          this.obstacles[1].show = true;
         }, this.getRandom(1, 3 * 1000));
       } else {
-        this.showObstacle = false;
-        this.showObstacle2 = false;
+        for (let i = 0; i < this.obstacles.length; i++) {
+          this.obstacles[i].show = false;
+        }
       }
     }
   },
@@ -108,64 +113,62 @@ export default {
       this.showStart = false;
       this.showLose = false;
     },
-    judge() {
-      const { obstacleX, characterX, obstacleY, characterY } = this.positions;
+    judge(index) {
+      // 半径を足し、左端から中心点までの距離を出す
+      const characterX = this.character.positionX;
+      const characterY = this.character.positionY;
+      const obstacleX = this.obstacles[index].positionX;
+      const obstacleY = this.obstacles[index].positionY;
 
-      const totalRadiusX = this.characterSize / 2 + this.obstacleWidth / 2;
+      const totalRadiusX = this.character.size / 2 + this.obstacles[index].width / 2;
       const distanceX = Math.abs(obstacleX - characterX);
-      const totalRadiusY = this.characterSize / 2 + this.obstacleHeight / 2;
+      const totalRadiusY = this.character.size / 2 + this.obstacles[index].height / 2;
       const distanceY = Math.abs(obstacleY - characterY);
 
       if (distanceX < totalRadiusX && distanceY < totalRadiusY) {
         this.showLose = true;
         this.playing = false;
-      } else {
-        this.score = this.score + 1 / 10;
       }
     },
-    setPosition(name, value) {
-      let modifiedValue = 0;
-      // 半径を足し、左端から中心点までの距離を出す
+    setCharacterPosition(name, value) {
+      this.character[name] = parseInt(value, 10) + this.character.size / 2;
+      if (this.playing) {
+        this.score = this.score + 1 / 5;
+      }
+    },
+    setObstaclePosition(name, value, index) {
       switch (name) {
-        case "obstacleX":
-          modifiedValue = parseInt(value, 10) + this.obstacleWidth / 2;
+        case "positionX":
+          this.obstacles[index].positionX = parseInt(value, 10) + this.obstacles[index].width / 2;
           break;
-        case "obstacleY":
-          modifiedValue = parseInt(value, 10) + this.obstacleHeight / 2;
-          break;
-        case "characterX":
-        case "characterY":
-          modifiedValue = parseInt(value, 10) + this.characterSize / 2;
+        case "positionY":
+          this.obstacles[index].positionY = parseInt(value, 10) + this.obstacles[index].height / 2;
           break;
       }
-      this.positions[name] = modifiedValue;
-      this.judge();
+      this.judge(index);
     },
     deleteObstacle(index) {
-      switch (index) {
-        case 1:
-          this.showObstacle = false;
-          break;
-        case 2:
-          this.showObstacle2 = false;
-          break;
-      }
+      this.obstacles[index].show = false;
+      this.obstacles[index].positionX = 0;
+      this.obstacles[index].positionY = 0;
+    },
+    setNextObstacle(index) {
+      this.obstacles[index] = {
+        obstacleNo: this.getRandom(1, 2),
+        height: this.getRandom(1, 4) * 40,
+        width: 50,
+        show: true,
+        positionX: 0,
+        positionY: 0
+      };
     },
     appearNextObstacle(index) {
       if (this.playing) {
-        switch (index) {
-          case 1:
-            this.obstacleNo = this.getRandom(1, 2);
-            this.obstacleHeight = this.getRandom(1, 4) * 40;
-            this.showObstacle = true;
-            break;
-          case 2:
-            this.obstacleNo2 = this.getRandom(1, 2);
-            this.obstacleHeight2 = this.getRandom(1, 4) * 40;
-            setTimeout(() => {
-              this.showObstacle2 = true;
-            }, this.getRandom(1, 3) * 1000);
-            break;
+        const nextPair = index + 2 < this.obstacles.length ? index + 2 : 0 + (index % 2);
+        if (nextPair % 2 === 0) {
+          this.setNextObstacle(nextPair);
+        } else {
+          setTimeout(() => this.setNextObstacle(nextPair), this.getRandom(2, 4) * 1500);
         }
       }
     },

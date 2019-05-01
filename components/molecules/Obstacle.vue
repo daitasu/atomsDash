@@ -44,8 +44,8 @@ export default {
     },
     measurePosition(el) {
       const style = window.getComputedStyle(el);
-      this.$emit("set", "obstacleX", style.left);
-      this.$emit("set", "obstacleY", style.bottom);
+      this.$emit("set", "positionX", style.left, this.index);
+      this.$emit("set", "positionY", style.bottom, this.index);
 
       if (this.show) {
         setTimeout(() => this.measurePosition(el), 50);

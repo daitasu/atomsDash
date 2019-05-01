@@ -64,8 +64,8 @@ export default {
       }, 20);
     },
     measurePosition() {
-      this.$emit("set", "characterX", this.left);
-      this.$emit("set", "characterY", this.bottom);
+      this.$emit("set", "positionX", this.left);
+      this.$emit("set", "positionY", this.bottom);
 
       if (this.playing) {
         setTimeout(() => this.measurePosition(), 50);
