@@ -69,7 +69,7 @@ export default {
 <style lang="scss" scoped>
 .cloud {
   position: absolute;
-  color: #aaa;
+  color: #999;
   z-index: 0 !important;
 }
 </style>

@@ -22,7 +22,8 @@ export default {
     width: { type: Number, default: 50 },
     height: { type: Number, default: 80 },
     obstacleNo: { type: Number, default: 1 },
-    show: { type: Boolean, default: false }
+    show: { type: Boolean, default: false },
+    index: { type: Number, default: 0 }
   },
   data() {
     return {
@@ -36,10 +37,10 @@ export default {
     enter(el) {
       this.measurePosition(el);
       Velocity(el, { left: "-5%" }, { duration: this.duration, loop: false, easing: "linear" });
-      setTimeout(() => this.$emit("delete"), this.duration);
+      setTimeout(() => this.$emit("delete", this.index), this.duration);
     },
     leave(el) {
-      this.$emit("appearNext");
+      this.$emit("appearNext", this.index);
     },
     measurePosition(el) {
       const style = window.getComputedStyle(el);

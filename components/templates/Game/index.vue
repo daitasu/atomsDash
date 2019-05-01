@@ -11,7 +11,8 @@
       LoseDialog(:dialog="showLose" :onOk="play")
     Scene(:playing="playing")
     Character(:playing="playing" @set="setPosition" :size="characterSize")
-    Obstacle(@set="setPosition" @delete="deleteObstacle" @appearNext="appearNextObstacle" :obstacleNo="obstacleNo" :show="showObstacle" :width="obstacleWidth" :height="obstacleHeight")
+    Obstacle(@set="setPosition" @delete="deleteObstacle" @appearNext="appearNextObstacle" :obstacleNo="obstacleNo" :show="showObstacle" :width="obstacleWidth" :height="obstacleHeight" :index="1")
+    Obstacle(@set="" @delete="deleteObstacle" @appearNext="appearNextObstacle" :obstacleNo="obstacleNo2" :show="showObstacle2" :width="obstacleWidth2" :height="obstacleHeight2" :index="2")
     Earth(:playing="playing")
 </template>
 
@@ -40,7 +41,6 @@ export default {
       playing: false,
       showStart: true,
       showLose: false,
-      showObstacle: false,
       positions: {
         obstacleX: 0,
         characterX: 0,
@@ -48,9 +48,34 @@ export default {
         characterY: 0
       },
       characterSize: 90,
+      showObstacle: false,
       obstacleWidth: 50,
       obstacleHeight: 40,
       obstacleNo: 1,
+      showObstacle2: false,
+      obstacleWidth2: 50,
+      obstacleHeight2: 40,
+      obstacleNo2: 1,
+      obstacles: [
+        {
+          width: 50,
+          height: 40,
+          show: false,
+          obstacleNo: 1
+        },
+        {
+          width: 50,
+          height: 40,
+          show: false,
+          obstacleNo: 1
+        },
+        {
+          width: 50,
+          height: 40,
+          show: false,
+          obstacleNo: 1
+        }
+      ],
       score: 0
     };
   },
@@ -65,7 +90,15 @@ export default {
   },
   watch: {
     playing(playing) {
-      this.showObstacle = playing;
+      if (playing) {
+        this.showObstacle = true;
+        setTimeout(() => {
+          this.showObstacle2 = true;
+        }, this.getRandom(1, 3 * 1000));
+      } else {
+        this.showObstacle = false;
+        this.showObstacle2 = false;
+      }
     }
   },
   methods: {
@@ -108,14 +141,32 @@ export default {
       this.positions[name] = modifiedValue;
       this.judge();
     },
-    deleteObstacle() {
-      this.showObstacle = false;
+    deleteObstacle(index) {
+      switch (index) {
+        case 1:
+          this.showObstacle = false;
+          break;
+        case 2:
+          this.showObstacle2 = false;
+          break;
+      }
     },
-    appearNextObstacle() {
+    appearNextObstacle(index) {
       if (this.playing) {
-        this.obstacleNo = this.getRandom(1, 2);
-        this.obstacleHeight = this.getRandom(1, 4) * 40;
-        this.showObstacle = true;
+        switch (index) {
+          case 1:
+            this.obstacleNo = this.getRandom(1, 2);
+            this.obstacleHeight = this.getRandom(1, 4) * 40;
+            this.showObstacle = true;
+            break;
+          case 2:
+            this.obstacleNo2 = this.getRandom(1, 2);
+            this.obstacleHeight2 = this.getRandom(1, 4) * 40;
+            setTimeout(() => {
+              this.showObstacle2 = true;
+            }, this.getRandom(1, 3) * 1000);
+            break;
+        }
       }
     },
     getRandom(min, max) {
