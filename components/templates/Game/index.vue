@@ -1,45 +1,52 @@
 <template lang="pug">
-  v-layout(row, justify-center, align-center)
-    v-flex(xs10)
-    v-flex(xs2 style="z-index: 3;").text-xs-left.px-2.py-1
-      div
-        GameText(:text="characterInfo")
-      div
-        GameText(:text="scoreInfo")
-    section
-      StartDialog(:dialog="showStart" :onOk="play")
-      LoseDialog(:dialog="showLose" :onOk="play")
-    Scene(:playing="playing")
-    Character(:playing="playing" @set="setCharacterPosition" :size="character.size")
-    template(v-for="o, index in obstacles")
-      Obstacle(@set="setObstaclePosition" @delete="deleteObstacle" @appearNext="appearNextObstacle" :obstacleNo="o.obstacleNo" :show="o.show" :width="o.width" :height="o.height" :index="index")
-    Earth(:playing="playing")
+  section
+    v-layout(row, justify-center, align-center)
+      v-flex(xs10)
+      v-flex(xs2 style="z-index: 3;").text-xs-left.px-2.py-1
+        div
+          GameText(:text="characterInfo")
+        div
+          GameText(:text="`score: ${scoreInfo}`")
+    v-layout(row justify-center align-center align-baseline)
+      PlayButton(v-if="standby" :onOk="() => showStart = true")
+      section
+        ConfirmDialog(:dialog="showStart" :onOk="play" :onNg="() => showStart = false" okText="START" text="ARE YOU READY ?" caution="Jump with space key")
+        ConfirmDialog(:dialog="showLose" :onOk="play" :onNg="() => showLose = false" okText="RESTART" text="GAME OVER" :caution="`Score : ${scoreInfo}`")
+      Scene(:playing="playing")
+      Character(:playing="playing" @set="setCharacterPosition" :size="character.size")
+      template(v-for="o, index in obstacles")
+        Obstacle(@set="setObstaclePosition" @delete="deleteObstacle" @appearNext="appearNextObstacle" :obstacleNo="o.obstacleNo" :show="o.show" :width="o.width" :height="o.height" :index="index")
+      Earth(:playing="playing")
 </template>
 
 <script>
 import StartDialog from "~/components/molecules/Dialogs/StartDialog";
 import LoseDialog from "~/components/molecules/Dialogs/LoseDialog";
+import ConfirmDialog from "~/components/molecules/Dialogs/ConfirmDialog";
 import Earth from "~/components/atoms/Fields/Earth";
 import Character from "~/components/molecules/Character";
 import Obstacle from "~/components/molecules/Obstacle";
 import Scene from "~/components/molecules/Scene";
 import GameText from "~/components/atoms/Text/GameText";
+import PlayButton from "~/components/atoms/Button/PlayButton";
 import { getSymbol } from "~/modules/master";
 
 export default {
   components: {
     StartDialog,
     LoseDialog,
+    ConfirmDialog,
     Character,
     Obstacle,
     Scene,
     Earth,
-    GameText
+    GameText,
+    PlayButton
   },
   data() {
     return {
       playing: false,
-      showStart: true,
+      showStart: false,
       showLose: false,
       character: {
         size: 90,
@@ -89,7 +96,10 @@ export default {
       return `atom: ${this.getSymbol("ELEMENT_SYMBOL", this.$store.state.atomNo)}`;
     },
     scoreInfo() {
-      return `score: ${Math.floor(this.score)}`;
+      return Math.floor(this.score);
+    },
+    standby() {
+      return !this.playing && !this.showLose && !this.showStart;
     }
   },
   watch: {

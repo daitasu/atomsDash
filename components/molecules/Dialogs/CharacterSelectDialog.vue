@@ -23,8 +23,8 @@ export default {
   },
   props: {
     dialog: { type: Boolean, default: false },
-    okText: { type: String, default: "決定する" },
-    ngText: { type: String, default: "キャンセル" },
+    okText: { type: String, default: "OK" },
+    ngText: { type: String, default: "CANCEL" },
     text: { type: String, default: "" },
     atomNo: { type: Number, default: 0 }
   },
