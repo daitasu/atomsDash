@@ -1,5 +1,5 @@
 <template lang="pug">
-v-dialog(v-model="dialog" width="370")
+v-dialog(v-model="dialog" width="370" persistent)
   v-card(style="border-radius: 10px;")
     v-card-title.title.text-xs-center
       div {{ text }}

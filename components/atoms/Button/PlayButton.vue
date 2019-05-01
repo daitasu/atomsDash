@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-btn(color="primary" large @click="onOk()" style="z-index:10; border-radius: 8px;")
+  v-btn(color="primary" large @click="onOk()" style="z-index:3; border-radius: 8px;")
     div.button-text {{ "PLAY GAME" }}
 </template>
 
