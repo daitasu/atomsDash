@@ -37,13 +37,18 @@ export default {
     this.atomNo = this.$store.state.atomNo;
     this.center = this.bottom;
     window.addEventListener("keydown", this.onJump);
+    window.addEventListener("touchstart", this.onJump);
   },
   destroyed() {
-    window.removeEventListener("keydown", this.onJump);
+    window.addEventListener("keydown", this.onJump);
+    window.removeEventListener("touchstart", this.onJump);
   },
   methods: {
     onJump(event) {
       if (this.jumping) {
+        return;
+      }
+      if (this.$ua.deviceType() === "pc" && event.keyCode !== 32) {
         return;
       }
       this.jumping = true;
