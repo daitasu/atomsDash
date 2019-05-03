@@ -124,6 +124,10 @@ export default {
       this.showLose = false;
     },
     judge(index) {
+      // ゲーム中以外は考慮しない
+      if (!this.playing) {
+        return;
+      }
       // 半径を足し、左端から中心点までの距離を出す
       const characterX = this.character.positionX;
       const characterY = this.character.positionY;
