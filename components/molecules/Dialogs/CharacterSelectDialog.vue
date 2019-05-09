@@ -7,9 +7,9 @@ v-dialog(v-model="dialog" width="420")
       Atom(:selectedAtomNo="atomNo" :size="90")
     v-divider
     v-card-actions
-      v-spacer.text-md-center
+      v-spacer.text-xs-center
         v-btn(color="error" flat="" @click="onNg()" data-test="confirm-ng") {{ ngText }}
-      v-spacer.text-md-center
+      v-spacer.text-xs-center
         v-btn(color="primary" flat="" @click="onOk()" data-test="confirm-ok") {{ okText }}
 </template>
 
