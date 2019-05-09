@@ -1,7 +1,7 @@
 {
   "name": "atomsDash",
-  "version": "1.0.0",
-  "description": "Atomic characters run, jump and enjoy a hurdle race.",
+  "version": "0.1.0",
+  "description": "The game that the atoms designed according with atomic design run and jump over the obstacles.",
   "author": "daitasu",
   "license": "MIT",
   "private": true,

@@ -1,6 +1,6 @@
 # atomsDash
 
-> Atomic characters run, jump and enjoy a hurdle race.
+> The game that the atoms designed according with atomic design run and jump over the obstacles.
 
 playground: https://atomsdash.firebaseapp.com/
 
