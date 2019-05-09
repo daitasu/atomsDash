@@ -4,7 +4,7 @@
     v-on:enter="enter"
     v-on:leave="leave"
   )
-    Ball(v-if="show && obstacleNo === 2" :bottom="height * 2.5")
+    Ball(v-if="show && obstacleNo === 2" :width="width" :height="height" :bottom="bottom")
     Wall(v-if="show && obstacleNo === 1" :width="width" :height="height")
 </template>
 
@@ -21,6 +21,7 @@ export default {
   props: {
     width: { type: Number, default: 50 },
     height: { type: Number, default: 80 },
+    bottom: { type: Number, default: 100 },
     obstacleNo: { type: Number, default: 1 },
     show: { type: Boolean, default: false },
     index: { type: Number, default: 0 }
@@ -48,7 +49,7 @@ export default {
       this.$emit("set", "positionY", style.bottom, this.index);
 
       if (this.show) {
-        setTimeout(() => this.measurePosition(el), 50);
+        setTimeout(() => this.measurePosition(el), 30);
       }
     }
   }

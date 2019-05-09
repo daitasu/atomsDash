@@ -15,7 +15,7 @@
       Scene(:playing="playing")
       Character(:playing="playing" @set="setCharacterPosition" :size="character.size")
       template(v-for="o, index in obstacles")
-        Obstacle(@set="setObstaclePosition" @delete="deleteObstacle" @appearNext="appearNextObstacle" :obstacleNo="o.obstacleNo" :show="o.show" :width="o.width" :height="o.height" :index="index")
+        Obstacle(@set="setObstaclePosition" @delete="deleteObstacle" @appearNext="appearNextObstacle" :obstacleNo="o.obstacleNo" :show="o.show" :width="o.width" :height="o.height" :bottom="o.bottom" :index="index")
       Earth(:playing="playing")
 </template>
 
@@ -57,6 +57,7 @@ export default {
         {
           width: 50,
           height: 40,
+          bottom: 100,
           show: false,
           obstacleNo: 1,
           positionX: 0,
@@ -65,6 +66,7 @@ export default {
         {
           width: 50,
           height: 40,
+          bottom: 100,
           show: false,
           obstacleNo: 1,
           positionX: 0,
@@ -73,6 +75,7 @@ export default {
         {
           width: 50,
           height: 40,
+          bottom: 100,
           show: false,
           obstacleNo: 1,
           positionX: 0,
@@ -81,6 +84,7 @@ export default {
         {
           width: 50,
           height: 40,
+          bottom: 100,
           show: false,
           obstacleNo: 1,
           positionX: 0,
@@ -167,10 +171,13 @@ export default {
       this.obstacles[index].positionY = 0;
     },
     setNextObstacle(index) {
+      const obstacleNo = 2 || this.getRandom(1, 2);
+
       this.obstacles[index] = {
-        obstacleNo: this.getRandom(1, 2),
-        height: this.getRandom(1, 4) * 40,
-        width: 50,
+        obstacleNo,
+        height: obstacleNo === 2 ? 40 : this.getRandom(1, 4) * 40,
+        width: obstacleNo === 2 ? 40 : 50,
+        bottom: obstacleNo === 2 ? this.getRandom(1, 4) * 40 * 2.5 : 100,
         show: true,
         positionX: 0,
         positionY: 0

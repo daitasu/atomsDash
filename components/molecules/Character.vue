@@ -1,6 +1,6 @@
 <template lang="pug">
-  div.character(:class="isJumping")
-    Atom(:size="size" :selectedAtomNo="atomNo" :left="left" :bottom="bottom")
+  div.character(:class="isJumping" :style="`bottom: ${bottom + size / 2}px;`")
+    Atom(:size="size" :selectedAtomNo="atomNo" :left="left")
 </template>
 
 <script>
@@ -53,11 +53,11 @@ export default {
       }
       this.jumping = true;
 
-      const radius = 400;
+      const radius = 200;
       let t = 0;
 
       const timer = setInterval(() => {
-        const jumpHeight = Math.sin((Math.PI * t++) / 100) * radius;
+        const jumpHeight = Math.sin((Math.PI * t++) / 80) * radius;
 
         this.bottom = this.center + jumpHeight;
 
