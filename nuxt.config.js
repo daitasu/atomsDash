@@ -58,7 +58,6 @@ module.exports = {
     "@nuxtjs/axios",
     "@nuxtjs/pwa",
     "nuxt-user-agent",
-    "@nuxtjs/dotenv",
     ["@nuxtjs/google-analytics", { id: "UA-84932968-3" }]
   ],
   /*

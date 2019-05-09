@@ -20,8 +20,6 @@
 </template>
 
 <script>
-import StartDialog from "~/components/molecules/Dialogs/StartDialog";
-import LoseDialog from "~/components/molecules/Dialogs/LoseDialog";
 import ConfirmDialog from "~/components/molecules/Dialogs/ConfirmDialog";
 import Earth from "~/components/atoms/Fields/Earth";
 import Character from "~/components/molecules/Character";
@@ -33,8 +31,6 @@ import { getSymbol } from "~/modules/master";
 
 export default {
   components: {
-    StartDialog,
-    LoseDialog,
     ConfirmDialog,
     Character,
     Obstacle,
@@ -151,7 +147,7 @@ export default {
     setCharacterPosition(name, value) {
       this.character[name] = parseInt(value, 10) + this.character.size / 2;
       if (this.playing) {
-        this.score = this.score + 1 / 5;
+        this.score = this.score + 1 / 2;
       }
     },
     setObstaclePosition(name, value, index) {
