@@ -1,14 +1,9 @@
 const VuetifyLoaderPlugin = require("vuetify-loader/lib/plugin");
-const pkg = require("./package");
 
 module.exports = {
   mode: "spa",
-
-  /*
-  ** Headers of the page
-  */
   head: {
-    title: pkg.name,
+    title: "atomsDash",
     meta: [
       {
         charset: "utf-8"
@@ -17,7 +12,11 @@ module.exports = {
         name: "viewport",
         content: "width=device-width,initial-scale=1"
       },
-      { hid: "description", name: "description", content: pkg.description }
+      {
+        hid: "description",
+        name: "description",
+        content: "the game that the atoms designed according with atomic design run and jump over the obstacles."
+      }
     ],
     link: [
       { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
@@ -72,9 +71,6 @@ module.exports = {
       }
     },
 
-    /*
-    ** You can extend webpack config here
-    */
     extend(config, ctx) {
       // Run ESLint on save
       if (ctx.isDev && ctx.isClient) {
