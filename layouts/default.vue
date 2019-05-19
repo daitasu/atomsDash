@@ -9,15 +9,15 @@
             v-list-tile-title(v-text="item.title" style="font-weight: 600; font-size: 18px;")
     v-toolbar(:clipped-left="clipped" fixed app class="light-blue lighten-4")
       v-toolbar-side-icon(@click="drawer = !drawer")
-      v-btn(icon @click.stop="clipped = !clipped")
-        v-icon web
-      v-toolbar-title(v-text="title")
+      v-toolbar-title(v-text="title" style="font-size: 22px; font-weight: 400; font-family: 'Arial Rounded MT Bold'")
       v-spacer
+      v-img.github(src="/github-circle.svg" aspect-ratio="1" :max-width="30" @click="jumpGithub")
     v-content.blue.lighten-5
       v-container
         nuxt
     v-footer(:fixed="fixed" app)
-      span &copy; 2019 @daitasu
+      v-spacer
+      span(style="font-size: 15px;")  &copy; 2019@daitasu
 </template>
 
 <script>
@@ -45,8 +45,17 @@ export default {
       title: "AtomsDash!!!"
     };
   },
-  created() {
-    console.log(this);
+  methods: {
+    jumpGithub() {
+      window.open("https://github.com/daitasu/atomsDash", "_blank");
+    }
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.github:hover {
+  cursor: pointer;
+  color: #999;
+}
+</style>
