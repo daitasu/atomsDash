@@ -99,6 +99,7 @@ export default {
   bottom: 0;
   margin: auto;
   z-index: 1;
+  box-shadow: -1px -1px 2px #1e5b86 inset;
 }
 .electron-2 {
   display: inline-block;
@@ -112,6 +113,7 @@ export default {
   bottom: 0;
   margin: auto;
   z-index: 1;
+  box-shadow: -1px -1px 2px #1e5b86 inset;
 }
 .electron-3 {
   display: inline-block;
@@ -125,6 +127,7 @@ export default {
   left: 0;
   margin: auto;
   z-index: 1;
+  box-shadow: -1px -1px 2px #1e5b86 inset;
 }
 .electron-4 {
   display: inline-block;
@@ -138,19 +141,7 @@ export default {
   left: 0;
   margin: auto;
   z-index: 1;
-}
-.electron-5 {
-  display: inline-block;
-  background-color: #4b90f9;
-  border-radius: 50%;
-  height: 10px;
-  width: 10px;
-  position: absolute;
-  left: -5px;
-  top: 0;
-  bottom: 0;
-  margin: auto;
-  z-index: 1;
+  box-shadow: -1px -1px 2px #1e5b86 inset;
 }
 .neutron {
   border-radius: 50%;
@@ -167,8 +158,10 @@ export default {
   font-weight: 600;
   text-align: center;
   padding: 5%;
+  box-shadow: -3px -3px 5px #666 inset;
 }
 .outermost {
-  background-color: #ff0000f1;
+  background-color: #ff0000;
+  box-shadow: -1px -1px 2px #9c4c44 inset;
 }
 </style>
