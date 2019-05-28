@@ -18,7 +18,10 @@ export default {
   data() {
     return {
       jumping: false,
-      center: null,
+      jumping2: false,
+      timer: 0,
+      earthPoint: null,
+      aeroPoint: null,
       bottom: 100,
       left: 150
     };
@@ -35,7 +38,7 @@ export default {
   },
   created() {
     this.atomNo = this.$store.state.atomNo;
-    this.center = this.bottom;
+    this.earthPoint = this.bottom;
     window.addEventListener("keydown", this.onJump);
     window.addEventListener("touchstart", this.onJump);
   },
@@ -45,25 +48,44 @@ export default {
   },
   methods: {
     onJump(event) {
-      if (this.jumping) {
+      if (this.jumping && this.jumping2) {
         return;
       }
+      if (this.jumping) {
+        clearInterval(this.timer);
+        this.jumping2 = true;
+        const radius = 150;
+        let t = 0;
+        this.aeroPoint = this.bottom;
+        const aeroTimer = setInterval(() => {
+          const jumpHeight = Math.sin((Math.PI * t++) / 70) * radius;
+          this.bottom = this.aeroPoint + jumpHeight;
+
+          if (this.bottom < this.earthPoint) {
+            clearInterval(aeroTimer);
+            this.bottom = this.earthPoint;
+            this.jumping = false;
+            this.jumping2 = false;
+          }
+        }, 20);
+        return;
+      }
+
       if (this.$ua.deviceType() === "pc" && event.keyCode !== 32) {
         return;
       }
       this.jumping = true;
 
-      const radius = 200;
+      const radius = 150;
       let t = 0;
 
-      const timer = setInterval(() => {
-        const jumpHeight = Math.sin((Math.PI * t++) / 80) * radius;
+      this.timer = setInterval(() => {
+        const jumpHeight = Math.sin((Math.PI * t++) / 70) * radius;
+        this.bottom = this.earthPoint + jumpHeight;
 
-        this.bottom = this.center + jumpHeight;
-
-        if (jumpHeight < 0) {
-          clearInterval(timer);
-          this.bottom = this.center;
+        if (this.bottom < this.earthPoint) {
+          clearInterval(this.timer);
+          this.bottom = this.earthPoint;
           this.jumping = false;
         }
       }, 20);
