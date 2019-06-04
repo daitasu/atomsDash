@@ -16,6 +16,16 @@ module.exports = {
         hid: "description",
         name: "description",
         content: "the game that the atoms designed according with atomic design run and jump over the obstacles."
+      },
+      {
+        hid: "og:url",
+        property: "og:url",
+        content: "https://atomsdash.firebaseapp.com/"
+      },
+      {
+        hid: "og:image",
+        property: "og:image",
+        content: "/icon.png"
       }
     ],
     link: [
