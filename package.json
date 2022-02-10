@@ -18,7 +18,7 @@
     "@nuxtjs/google-analytics": "^2.2.0",
     "@nuxtjs/pwa": "^3.0.0-beta.16",
     "cross-env": "^5.2.0",
-    "node-sass": "^4.12.0",
+    "node-sass": "^7.0.0",
     "nuxt": "^2.7.1",
     "nuxt-user-agent": "^1.2.1",
     "pug": "^2.0.3",
